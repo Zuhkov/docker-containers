@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>guacamole</Name>
+  <Description>
+    [h3]Guacamole[/h3]Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC and RDP.[br][br]
+    [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
+    [b]/config[/b] : this path is where Guacamole will store it\'s properties file and the database which contains data for users, articles, and configuration.[br]
+    Initial username and password are [b]guacadmin[/b]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/zuhkov/guacamole/</Registry>
+  <Repository>zuhkov/guacamole</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>9090</HostPort>
+        <ContainerPort>8080</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/config</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version></Version>
+  <WebUI>http://[IP]:[PORT:9090]/</WebUI>
+  <Banner>http://i.imgur.com/tZ5x8bc.png</Banner>
+  <Icon>http://i.imgur.com/eflpez4.png</Icon>
+</Container>
