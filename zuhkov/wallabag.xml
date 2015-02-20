@@ -7,8 +7,8 @@
     [b]/var/www/wallabag/db[/b] : this path is where wallabag will store it\'s database file which contains data for users, articles, and configuration.[br]
     Initial username and password are [b]wallabag[/b]
   </Description>
-  <Registry>https://registry.hub.docker.com/u/zuhkov/docker-wallabag/</Registry>
-  <Repository>zuhkov/docker-wallabag</Repository>
+  <Registry>https://registry.hub.docker.com/u/zuhkov/wallabag/</Registry>
+  <Repository>zuhkov/wallabag</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Environment/>
@@ -26,6 +26,11 @@
     <Volume>
       <HostDir>/mnt/user/appdata/wallabag/db</HostDir>
       <ContainerDir>/var/www/wallabag/db</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir>/mnt/user/appdata/wallabag/config</HostDir>
+      <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
