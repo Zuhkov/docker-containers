@@ -2,7 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:0.9.16
 MAINTAINER Zuhkov <zuhkov@gmail.com>
 
 # Set correct environment variables.
@@ -41,7 +41,7 @@ RUN locale-gen uk_UA.UTF-8
 # Install wallabag prereqs
 RUN add-apt-repository ppa:nginx/stable && \
     apt-get update -q && \
-    apt-get install -y nginx php5-cli php5-common php5-sqlite \
+    apt-get install -y nginx sqlite3 php5-cli php5-common php5-sqlite \
       php5-curl php5-fpm php5-json php5-tidy wget unzip gettext
 RUN apt-get update -q && \
     apt-get install -y php5-gd
@@ -59,7 +59,7 @@ RUN mkdir /etc/service/nginx
 COPY nginx.sh /etc/service/nginx/run
 
 # Wallabag version
-ENV WALLABAG_VERSION 1.8.1b
+ENV WALLABAG_VERSION 1.9
 
 # Extract wallabag code
 ADD https://github.com/wallabag/wallabag/archive/$WALLABAG_VERSION.zip /tmp/wallabag-$WALLABAG_VERSION.zip
@@ -71,7 +71,7 @@ RUN cd /var/www && \
     mv wallabag-$WALLABAG_VERSION wallabag && \
     cd wallabag && \
     unzip -q /tmp/vendor.zip && \
-    cp inc/poche/config.inc.default.php inc/poche/config.inc.php
+    sed -i "s/'SALT', '.*'/'SALT', '34gAogagAigJaurgbqfdvqQergvqer'/" /var/www/wallabag/inc/poche/config.inc.default.php
 COPY data/poche.sqlite /var/www/wallabag/firstrun/poche.sqlite
 RUN cp -r /var/www/wallabag/db/. /var/www/wallabag/firstrun/
 
@@ -90,7 +90,7 @@ COPY nginx-wallabag /etc/nginx/sites-available/default
 
 EXPOSE 80
 
-VOLUME ["/var/www/wallabag/db"]
+VOLUME ["/var/www/wallabag/db","/config"]
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
