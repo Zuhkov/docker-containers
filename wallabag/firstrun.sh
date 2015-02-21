@@ -16,6 +16,7 @@ if [ -f /config/config.inc.php ]; then
 else
   echo "Loading PHP config from default."
   cp /var/www/wallabag/inc/poche/config.inc.default.php /config/config.inc.php
+  chown nobody:users /config/config.inc.php
 fi
 
 ln -s /config/config.inc.php /var/www/wallabag/inc/poche/config.inc.php
