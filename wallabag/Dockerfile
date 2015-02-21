@@ -58,6 +58,9 @@ COPY php5-fpm.sh /etc/service/php5-fpm/run
 RUN mkdir /etc/service/nginx
 COPY nginx.sh /etc/service/nginx/run
 
+RUN chmod +x /etc/service/php5-fpm/run && \
+    chmod +x /etc/service/nginx/run
+
 # Wallabag version
 ENV WALLABAG_VERSION 1.9
 
