@@ -84,7 +84,9 @@ RUN chmod +x /etc/my_init.d/firstrun.sh && \
     rm -f /tmp/wallabag-$WALLABAG_VERSION.zip /tmp/vendor.zip && \
     rm -rf /var/www/wallabag/install && \
     chown -R nobody:users /var/www/wallabag && \
-    chmod 755 -R /var/www/wallabag
+    chmod 755 -R /var/www/wallabag && \
+    chown -R nobody:users /config && \
+    chmod 755 -R /config
 
 # Configure nginx to serve wallabag app
 COPY nginx-wallabag /etc/nginx/sites-available/default
