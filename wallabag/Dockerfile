@@ -65,7 +65,7 @@ ENV WALLABAG_VERSION 1.9
 ADD https://github.com/wallabag/wallabag/archive/$WALLABAG_VERSION.zip /tmp/wallabag-$WALLABAG_VERSION.zip
 COPY vendor.zip /tmp/vendor.zip
 
-RUN mkdir -p /var/www
+RUN mkdir -p /var/www /config
 RUN cd /var/www && \
     unzip -q /tmp/wallabag-$WALLABAG_VERSION.zip && \
     mv wallabag-$WALLABAG_VERSION wallabag && \

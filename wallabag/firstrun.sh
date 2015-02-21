@@ -11,11 +11,10 @@ else
 fi
 
 # Check if PHP config exists. If not, copy in the default config
-if [ -f /var/www/wallabag/inc/poche/config.inc.php ]; then
+if [ -f /config/config.inc.php ]; then
   echo "Using existing PHP config file."
 else
   echo "Loading PHP config from default."
-  mkdir /config
   cp /var/www/wallabag/inc/poche/config.inc.default.php /config/config.inc.php
 fi
 
