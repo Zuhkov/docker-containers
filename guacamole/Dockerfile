@@ -54,7 +54,7 @@ ENV GUAC_VER 0.9.4
 ### Version of mysql-connector-java to install
 ENV MCJ_VER 5.1.34
 ### config directory and classpath directory
-RUN mkdir -p /config /var/lib/guacamole/classpath /etc/firstrun /etc/service/db /etc/service/guacd /etc/service/tomcat7
+RUN mkdir -p /config /var/lib/guacamole/classpath /etc/firstrun
 
 # Tweak my.cnf
 
@@ -103,16 +103,13 @@ RUN ln -s /usr/local/lib/freerdp/guacsnd.so /usr/lib/x86_64-linux-gnu/freerdp/ &
     ln -s /usr/local/lib/freerdp/guacdr.so /usr/lib/x86_64-linux-gnu/freerdp/
 
 ### Configure Service Startup
+COPY rc.local /etc/rc.local
+COPY mariadb.sh /etc/service/mariadb/run
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
-COPY db.sh /etc/service/db/run
-COPY guacd.sh /etc/service/guacd/run
-COPY tomcat7.sh /etc/service/tomcat7/run
 COPY configfiles/. /etc/firstrun/
-RUN chmod a+x /etc && \
+RUN chmod a+x /etc/rc.local /etc && \
+    chmod +x /etc/service/mariadb/run && \
     chmod +x /etc/my_init.d/firstrun.sh && \
-    chmod +x /etc/service/db/run && \
-    chmod +x /etc/service/guacd/run && \
-    chmod +x /etc/service/tomcat7/run && \
     chown -R nobody:users /config && \
     chown -R nobody:users /var/log/mysql* && \
     chown -R nobody:users /var/lib/mysql && \
