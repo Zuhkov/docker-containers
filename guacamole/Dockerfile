@@ -54,7 +54,7 @@ ENV GUAC_VER 0.9.4
 ### Version of mysql-connector-java to install
 ENV MCJ_VER 5.1.34
 ### config directory and classpath directory
-RUN mkdir -p /config /var/lib/guacamole/classpath /etc/firstrun
+RUN mkdir -p /config /var/lib/guacamole/classpath /etc/firstrun /etc/service/db /etc/service/guacd /etc/service/tomcat7
 
 # Tweak my.cnf
 

@@ -38,4 +38,3 @@ fi
 
 echo "Starting MariaDB..."
 /usr/bin/mysqld_safe --skip-syslog --datadir='/config/databases'
-exit 0
