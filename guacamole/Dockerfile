@@ -107,7 +107,6 @@ COPY rc.local /etc/rc.local
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 COPY configfiles/. /etc/firstrun/
 RUN chmod a+x /etc/rc.local /etc && \
-    chmod +x /etc/service/mariadb/run && \
     chmod +x /etc/my_init.d/firstrun.sh && \
     chown -R nobody:users /config && \
     chown -R nobody:users /var/log/mysql* && \
