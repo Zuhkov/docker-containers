@@ -104,7 +104,6 @@ RUN ln -s /usr/local/lib/freerdp/guacsnd.so /usr/lib/x86_64-linux-gnu/freerdp/ &
 
 ### Configure Service Startup
 COPY rc.local /etc/rc.local
-COPY mariadb.sh /etc/service/mariadb/run
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 COPY configfiles/. /etc/firstrun/
 RUN chmod a+x /etc/rc.local /etc && \
