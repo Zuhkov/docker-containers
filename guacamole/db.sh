@@ -38,8 +38,4 @@ fi
 
 echo "Starting MariaDB..."
 /usr/bin/mysqld_safe --skip-syslog --datadir='/config/databases'
-sleep 1
-echo "Starting Tomcat and guacd..."
-/etc/init.d/tomcat7 start
-/etc/init.d/guacd start
 exit 0

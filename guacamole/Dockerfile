@@ -103,11 +103,16 @@ RUN ln -s /usr/local/lib/freerdp/guacsnd.so /usr/lib/x86_64-linux-gnu/freerdp/ &
     ln -s /usr/local/lib/freerdp/guacdr.so /usr/lib/x86_64-linux-gnu/freerdp/
 
 ### Configure Service Startup
-COPY rc.local /etc/rc.local
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
+COPY db.sh /etc/service/db/run
+COPY guacd.sh /etc/service/guacd/run
+COPY tomcat7.sh /etc/service/tomcat7/run
 COPY configfiles/. /etc/firstrun/
-RUN chmod a+x /etc/rc.local /etc && \
+RUN chmod a+x /etc && \
     chmod +x /etc/my_init.d/firstrun.sh && \
+    chmod +x /etc/service/db/run && \
+    chmod +x /etc/service/guacd/run && \
+    chmod +x /etc/service/tomcat7/run && \
     chown -R nobody:users /config && \
     chown -R nobody:users /var/log/mysql* && \
     chown -R nobody:users /var/lib/mysql && \
