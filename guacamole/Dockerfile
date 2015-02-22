@@ -1,5 +1,5 @@
 ### Dockerfile for guacamole
-### Includes the mysql authentication modules preinstalled
+### Includes the mysql authentication module preinstalled
 
 # Use phusion/baseimage as base image. To make your builds reproducible, make
 # sure you lock down to a specific version, not to `latest`!
@@ -122,6 +122,5 @@ VOLUME ["/config"]
 
 ### END
 ### To make this a persistent guacamole container, you must map /config of this container
-### To a folder on your host machine.  You can also build a new container based on this one
-### adding your config files directly inside your new container.
+### to a folder on your host machine.
 ###

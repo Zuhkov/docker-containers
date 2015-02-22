@@ -9,7 +9,7 @@ start_mysql(){
     done
 }
 
-# If databases do not exist create them
+# If databases do not exist, create them
 if [ -f /config/databases/guacamole/guacamole_user.ibd ]; then
   echo "Database exists."
 else

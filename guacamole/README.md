@@ -1,9 +1,7 @@
 Guacamole
 ====
 
-Dockerfile for guacamole 0.9.4 with embedded MariaDB (MySQL) Authentication
-
-Based on phusion
+Dockerfile for Guacamole 0.9.4 with embedded MariaDB (MySQL) Authentication
 
 Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC and RDP.
 
@@ -42,3 +40,11 @@ docker run -d -v /your-config-location:/config -p 8080:8080 zuhkov/guacamole
 ```
 
 Browse to ```http://your-host-ip:8080``` and login with user and password `guacadmin`
+
+---
+Credits
+===
+
+Guacamole is an open source project and is copyright Glyptodon LLC
+
+This docker image is built upon the baseimage made by phusion and forked from hall/guacamole
