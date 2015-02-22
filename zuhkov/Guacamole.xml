@@ -24,7 +24,7 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/guacamole/config</HostDir>
+      <HostDir>/mnt/user/appdata/guacamole</HostDir>
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
