@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if properties file  exists. If not, copy in the starter database
+# Check if properties file exists. If not, copy in the default properties file.
 if [ -f /config/guacamole/guacamole.properties ]; then
   echo "Using existing properties file."
 else
