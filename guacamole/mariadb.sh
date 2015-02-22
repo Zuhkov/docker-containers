@@ -33,6 +33,8 @@ else
   chown -R nobody:users /config/databases
   chmod -R 755 /config/databases
   sleep 1
+  /etc/init.d/tomcat7 restart
+  /etc/init.d/guacd restart
   echo "Initialization complete."
 fi
 
