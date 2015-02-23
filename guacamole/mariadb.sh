@@ -20,7 +20,6 @@ else
   echo "Creating user and database."
   mysql -uroot -e "CREATE DATABASE guacamole"
   PW=$(cat /config/guacamole/guacamole.properties | grep -m 1 "mysql-password:\s" | sed 's/mysql-password:\s//')
-  echo $PW
   mysql -uroot -e "CREATE USER 'guacamole'@'localhost' IDENTIFIED BY '$PW'"
   echo "Database created. Granting access to 'guacamole' user for localhost."
   mysql -uroot -e "GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole.* TO 'guacamole'@'localhost'"
