@@ -107,7 +107,7 @@ COPY rc.local /etc/rc.local
 COPY mariadb.sh /etc/service/mariadb/run
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 COPY configfiles/. /etc/firstrun/
-RUN chmod a+x /etc/rc.local /etc && \
+RUN chmod a+x /etc/rc.local && \
     chmod +x /etc/service/mariadb/run && \
     chmod +x /etc/my_init.d/firstrun.sh && \
     chown -R nobody:users /config && \

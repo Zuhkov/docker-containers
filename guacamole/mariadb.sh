@@ -19,9 +19,9 @@ else
   start_mysql
   echo "Creating user and database."
   mysql -uroot -e "CREATE DATABASE guacamole"
-  PW=$(pwgen -1snc 32)
+  PW=$(cat /config/guacamole/guacamole.properties | grep -m 1 "mysql-password:\s" | sed 's/mysql-password:\s//')
+  echo $PW
   mysql -uroot -e "CREATE USER 'guacamole'@'localhost' IDENTIFIED BY '$PW'"
-  sed -i -e 's/some_password/'$PW'/g' /config/guacamole/guacamole.properties
   echo "Database created. Granting access to 'guacamole' user for localhost."
   mysql -uroot -e "GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole.* TO 'guacamole'@'localhost'"
   mysql -uroot -e "FLUSH PRIVILEGES"
@@ -29,10 +29,11 @@ else
   mysql -uroot guacamole < /root/002-create-admin-user.sql
   echo "Shutting down."
   mysqladmin -u root shutdown
+  sleep 3
   echo "chown time"
   chown -R nobody:users /config/databases
   chmod -R 755 /config/databases
-  sleep 1
+  sleep 3
   echo "Initialization complete."
 fi
 
