@@ -4,6 +4,7 @@
   <Description>
     [h3]wallabag[/h3]wallabag is a self hostable application for saving web pages. Click, save, read it when you want. It saves the content you select so that you can read it when you have time.[br][br]
     [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
+    [b]Be sure to change the Host port from [span style=\'color: #E80000;\']8080[/span] to [span style=\'color: #E80000;\']something else[/span] as [span style=\'color: #E80000;\']8080[/span] is quite a common port.
     [b]/var/www/wallabag/db[/b] : this path is where wallabag will store it\'s database file which contains data for users, articles, and configuration.[br]
     Initial username and password are [b]wallabag[/b]
   </Description>
@@ -16,7 +17,7 @@
     <Mode>bridge</Mode>
     <Publish>
       <Port>
-        <HostPort>7070</HostPort>
+        <HostPort>80</HostPort>
         <ContainerPort>80</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>

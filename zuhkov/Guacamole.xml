@@ -4,6 +4,7 @@
   <Description>
     [h3]Guacamole[/h3]Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC and RDP.[br][br]
     [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
+
     [b]/config[/b] : this path is where Guacamole will store it\'s properties files and the database which contains data for users and connections.[br]
     Initial username and password are [b]guacadmin[/b]
   </Description>
@@ -16,7 +17,7 @@
     <Mode>bridge</Mode>
     <Publish>
       <Port>
-        <HostPort>9090</HostPort>
+        <HostPort>8080</HostPort>
         <ContainerPort>8080</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>
