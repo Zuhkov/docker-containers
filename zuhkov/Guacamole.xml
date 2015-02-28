@@ -31,7 +31,7 @@
     </Volume>
   </Data>
   <Version></Version>
-  <WebUI>http://[IP]:[PORT:9090]/</WebUI>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
   <Banner>http://i.imgur.com/tZ5x8bc.png</Banner>
   <Icon>http://i.imgur.com/eflpez4.png</Icon>
 </Container>
