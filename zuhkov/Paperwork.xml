@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
-  <Name>wallabag</Name>
+  <Name>Paperwork</Name>
   <Description>
-    [h3]wallabag[/h3]wallabag is a self hostable application for saving web pages. Click, save, read it when you want. It saves the content you select so that you can read it when you have time.[br][br]
+    [h3]Paperwork[/h3]Paperwork aims to be an open-source, self-hosted alternative to services like Evernote (R), Microsoft OneNote (R) or Google Keep (R).[br][br]
     [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
     [b]Be sure to change the Host port from [span style=\'color: #E80000;\']80[/span] to [span style=\'color: #E80000;\']something else[/span] as [span style=\'color: #E80000;\']80[/span] is the port unRAID uses for its web interface.[/b][br][br]
-    [b]/var/www/wallabag/db[/b] : this path is where wallabag will store it\'s database file which contains data for users, articles, and configuration.[br]
-    Initial username and password are [b]wallabag[/b]
+    [b]/config[/b] : this path is where Paperwork will store it\'s database connection file and the database which contains data for users, notebooks, and notes.[br]
   </Description>
-  <Registry>https://registry.hub.docker.com/u/zuhkov/wallabag/</Registry>
-  <Repository>zuhkov/wallabag</Repository>
+  <Registry>https://registry.hub.docker.com/u/zuhkov/paperwork/</Registry>
+  <Repository>zuhkov/paperwork</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Environment/>
@@ -25,18 +24,13 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/wallabag/db</HostDir>
-      <ContainerDir>/var/www/wallabag/db</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-	<Volume>
-      <HostDir>/mnt/user/appdata/wallabag/config</HostDir>
+      <HostDir>/mnt/user/appdata/paperwork</HostDir>
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
   <Version></Version>
   <WebUI>http://[IP]:[PORT:80]/</WebUI>
-  <Banner>http://i.imgur.com/Cq6DZ70.png</Banner>
-  <Icon>http://i.imgur.com/WczvTjH.png</Icon>
+  <Banner>http://i.imgur.com/UJD1dvA.png</Banner>
+  <Icon>http://i.imgur.com/butfLlk.png</Icon>
 </Container>
