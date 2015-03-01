@@ -45,6 +45,6 @@ Browse to ```http://your-host-ip:8888``` and login with user and password `paper
 Credits
 ===
 
-Guacamole is an open source project and is copyright Glyptodon LLC
+Paperwork is an open source project and is copyright twostairs
 
 This docker image is built upon the baseimage made by phusion
