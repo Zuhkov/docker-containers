@@ -38,6 +38,11 @@ Create your Observium config directory (which will contain both the properties f
 ```
 docker run -d -v /your-config-location:/config -v /path-to-logs:/opt/observium/logs -v /path-to-rrds:/opt/observium/rrd -p 8668:8668 zuhkov/observium
 ```
+To set the timezone for Observium, pass in a valid value as an environment variable:
+```
+docker run -d -v /your-config-location:/config -v /path-to-logs:/opt/observium/logs -v /path-to-rrds:/opt/observium/rrd -e TZ="America/Chicago" -p 8668:8668 zuhkov/observium
+```
+If you do not specify a timezone, the timezone will but set to UTC.
 
 Browse to ```http://your-host-ip:8668``` and login with user and password `observium`
 
