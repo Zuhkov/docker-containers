@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>Observium</Name>
+  <Description>
+    [h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]
+    [b][span style=\'color: #E80000;\']Directions:[/span][/b][br]
+    [b]/config[/b] : this path is where Observium will store its PHP config file and the database which contains data for users, devices, and data.[br]
+	[b]/opt/observium/logs[/b] : this path is where Observium will store its logs.[br]
+	[b]/opt/observium/rrd[/b] : this path is where Observium will store its Round-Robin Database (RRD) data.[br]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/zuhkov/observium/dockerfile/</Registry>
+  <Repository>zuhkov/observium</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>8668</HostPort>
+        <ContainerPort>8668</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/observium/config</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir>/mnt/user/appdata/observium/logs</HostDir>
+      <ContainerDir>/opt/observium/logs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir>/mnt/user/appdata/observium/rrd</HostDir>
+      <ContainerDir>/opt/observium/rrd</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version></Version>
+  <WebUI>http://[IP]:[PORT:8668]/</WebUI>
+  <Banner>http://i.imgur.com/LsvkwHO.png</Banner>
+  <Icon>http://i.imgur.com/CGrAh79.png</Icon>
+</Container>
