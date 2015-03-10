@@ -5,7 +5,7 @@ atd
 # Check if PHP database config exists. If not, copy in the default config
 if [ -f /config/config.php ]; then
   echo "Using existing PHP database config file."
-  echo "/opt/observium/discovery.php -u" | at now + 1 minute
+  echo "/opt/observium/discovery.php -u" | at -M now + 1 minute
 else
   echo "Loading PHP config from default."
   mkdir -p /config/databases
