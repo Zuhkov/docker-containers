@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
+<Beta>False</Beta>
+<Category>Network:Management MediaServer:Other Productivity:</Category>
   <Name>Paperwork</Name>
   <Description>
     [h3]Paperwork[/h3]Paperwork aims to be an open-source, self-hosted alternative to services like Evernote (R), Microsoft OneNote (R) or Google Keep (R).[br][br]
