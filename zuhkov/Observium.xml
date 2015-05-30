@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
+<Beta>False</Beta>
+<Category>Network:Management</Category>
   <Name>Observium</Name>
   <Description>
     [h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]
