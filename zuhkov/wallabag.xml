@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
+<Beta>False</Beta>
+<Category>Downloaders:</Category>
   <Name>wallabag</Name>
   <Description>
     [h3]wallabag[/h3]wallabag is a self hostable application for saving web pages. Click, save, read it when you want. It saves the content you select so that you can read it when you have time.[br][br]
