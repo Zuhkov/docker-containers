@@ -25,7 +25,7 @@ else
   mysql -uroot -e "GRANT ALL PRIVILEGES ON observium.* TO 'observium'@'localhost'"
   mysql -uroot -e "FLUSH PRIVILEGES"
   cd /opt/observium
-  php includes/update/update.php
+  ./discovery.php -u
   php adduser.php observium observium 10
   echo "Shutting down."
   mysqladmin -u root shutdown
