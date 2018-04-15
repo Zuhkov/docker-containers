@@ -86,12 +86,14 @@ RUN cd /tmp && \
 RUN mkdir -p /var/www /config/databases /etc/firstrun
 RUN cd /var/www && \
     git clone https://github.com/twostairs/paperwork.git && \
-    cd ./paperwork/frontend/ && \
+    cd ./paperwork/ && \
+    git checkout 1  && \
+    cd ./frontend/ && \ 
     composer install && \
-    wget https://www.npmjs.org/install.sh && \
-    bash ./install.sh && \
-    npm install -g gulp && \
+    npm install -g gulp && \ 
+    npm install -g bower && \
     npm install && \
+    bower install --allow-root && \
     gulp
 
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
