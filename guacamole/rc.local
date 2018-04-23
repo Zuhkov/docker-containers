@@ -1,4 +1,0 @@
-#!/bin/sh
-/etc/init.d/tomcat7 start
-/etc/init.d/guacd start
-exit 0
