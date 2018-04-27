@@ -19,19 +19,21 @@ else
 
   echo "Preparing storage folder"
   cp -r /var/www/paperwork/frontend/app/storage/ /config/storage/
+fi
 
-  echo "Creating symlinks"
-  #rm /var/www/paperwork/frontend/app/config/database.php
-  ln -s /config/database.php /var/www/paperwork/frontend/app/config/database.php
-  
-  rm /var/www/paperwork/frontend/app/config/ldap.php
-  ln -s /config/ldap.php /var/www/paperwork/frontend/app/config/ldap.php
-  
-  rm /var/www/paperwork/frontend/app/config/auth.php
-  ln -s /config/auth.php /var/www/paperwork/frontend/app/config/auth.php
-  
-  #rm -r /var/www/paperwork/frontend/app/storage
-  ln -s /config/storage/ /var/www/paperwork/frontend/app/storage/
+echo "Creating symlinks"
+#rm /var/www/paperwork/frontend/app/config/database.php
+ln -s /config/database.php /var/www/paperwork/frontend/app/config/database.php
+
+rm /var/www/paperwork/frontend/app/config/ldap.php
+ln -s /config/ldap.php /var/www/paperwork/frontend/app/config/ldap.php
+
+rm /var/www/paperwork/frontend/app/config/auth.php
+ln -s /config/auth.php /var/www/paperwork/frontend/app/config/auth.php
+
+if [ ! -L /var/www/paperwork/frontend/app/storage ]; then
+  rm -r /var/www/paperwork/frontend/app/storage
+  ln -s /config/storage/ /var/www/paperwork/frontend/app/
 fi
 
 chown nobody:users -R /var/www/paperwork
