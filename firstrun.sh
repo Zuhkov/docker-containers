@@ -10,18 +10,29 @@ else
   chown nobody:users /config/database.php
   PW=$(pwgen -1snc 32)
   sed -i -e 's/some_password/'$PW'/g' /config/database.php
-  
+
   echo "Preparing LDAP configuration"
   cp /var/www/paperwork/frontend/app/config/ldap.php /config/ldap.php
+  cp /var/www/paperwork/frontend/app/config/auth.php /config/auth.php
   chown nobody:users /config/ldap.php
-  
+  chown nobody:users /config/auth.php
+
   echo "Preparing storage folder"
   cp -r /var/www/paperwork/frontend/app/storage/ /config/storage/
-  rm -r /var/www/paperwork/frontend/app/storage/*
+
+  echo "Creating symlinks"
+  #rm /var/www/paperwork/frontend/app/config/database.php
+  ln -s /config/database.php /var/www/paperwork/frontend/app/config/database.php
+  
+  rm /var/www/paperwork/frontend/app/config/ldap.php
+  ln -s /config/ldap.php /var/www/paperwork/frontend/app/config/ldap.php
+  
+  rm /var/www/paperwork/frontend/app/config/auth.php
+  ln -s /config/auth.php /var/www/paperwork/frontend/app/config/auth.php
+  
+  #rm -r /var/www/paperwork/frontend/app/storage
+  ln -s /config/storage/ /var/www/paperwork/frontend/app/storage/
 fi
 
-ln -s /config/storage /var/www/paperwork/frontend/app/storage
-ln -s /config/database.php /var/www/paperwork/frontend/app/config/database.php
-ln -s /config/ldap.php /var/www/paperwork/frontend/app/config/ldap.php
 chown nobody:users -R /var/www/paperwork
 chmod 755 -R /var/www/paperwork
