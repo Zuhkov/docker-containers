@@ -49,7 +49,7 @@ RUN add-apt-repository ppa:nginx/stable && \
     apt-get update -q && \
     apt-get install -y --no-install-recommends mariadb-server nginx php5-cli php5-common \
       php5-curl php5-fpm php5-tidy wget unzip software-properties-common pwgen \
-       git php5-mysql php5-gd php5-mcrypt nodejs
+       git php5-mysql php5-gd php5-mcrypt php5-ldap nodejs
 
 # Configure php-fpm
 #RUN echo "cgi.fix_pathinfo = 0" >> /etc/php5/fpm/php.ini
