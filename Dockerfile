@@ -42,68 +42,81 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xcbcb082a1bb94
     echo "deb http://mariadb.mirror.iweb.com/repo/5.5/ubuntu `lsb_release -cs` main" \
     > /etc/apt/sources.list.d/mariadb.list
 
-# Install Observium prereqs
-RUN apt-get update -q && \
-    apt-get install -y --no-install-recommends mariadb-server mariadb-client \
-      libapache2-mod-php5 php5-cli php5-json wget unzip software-properties-common pwgen \
-      php5-mysql php5-gd php5-mcrypt python-mysqldb rrdtool subversion whois mtr-tiny at \
-      nmap ipmitool graphviz imagemagick php5-snmp php-pear snmp graphviz fping libvirt-bin
+RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+# Install Paperwork prereqs
+RUN add-apt-repository ppa:nginx/stable && \
+    apt-get update -q && \
+    apt-get install -y --no-install-recommends mariadb-server nginx php5-cli php5-common \
+      php5-curl php5-fpm php5-tidy wget unzip software-properties-common pwgen \
+       git php5-mysql php5-gd php5-mcrypt php5-ldap nodejs
+
+# Configure php-fpm
+#RUN echo "cgi.fix_pathinfo = 0" >> /etc/php5/fpm/php.ini
+RUN echo "extension=mcrypt.so" >> /etc/php5/fpm/php.ini && \
+    echo "extension=mcrypt.so" >> /etc/php5/cli/php.ini && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Tweak my.cnf
-RUN sed -i -e 's#\(bind-address.*=\).*#\1 127.0.0.1#g' /etc/mysql/my.cnf && \
+RUN sed -i -e 's#\(bind-address.*=\).*#\1 0.0.0.0#g' /etc/mysql/my.cnf && \
     sed -i -e 's#\(log_error.*=\).*#\1 /config/databases/mysql_safe.log#g' /etc/mysql/my.cnf && \
     sed -i -e 's/\(user.*=\).*/\1 nobody/g' /etc/mysql/my.cnf && \
     echo '[mysqld]' > /etc/mysql/conf.d/innodb_file_per_table.cnf && \
     echo 'innodb_file_per_table' >> /etc/mysql/conf.d/innodb_file_per_table.cnf
 
-RUN mkdir -p /opt/observium/firstrun /opt/observium/logs /opt/observium/rrd /config && \
-    cd /opt && \
-    wget http://www.observium.org/observium-community-latest.tar.gz && \
-    tar zxvf observium-community-latest.tar.gz && \
-    rm observium-community-latest.tar.gz
+COPY www.conf /etc/php5/fpm/pool.d/www.conf
 
-RUN php5enmod mcrypt && \
-    a2enmod rewrite
+RUN mkdir /etc/service/php5-fpm
+COPY php5-fpm.sh /etc/service/php5-fpm/run
 
-RUN mkdir /etc/service/apache2
-COPY apache2.sh /etc/service/apache2/run
-RUN chmod +x /etc/service/apache2/run
+RUN mkdir /etc/service/nginx
+COPY nginx.sh /etc/service/nginx/run
+
+RUN chmod +x /etc/service/php5-fpm/run && \
+    chmod +x /etc/service/nginx/run
+
+# Move to pulling specific versions once Paperwork has them
+#ENV PAPERWORK_VERSION 1.0
+
+# Install composer
+RUN cd /tmp && \
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
+
+RUN mkdir -p /var/www /config/databases /etc/firstrun
+RUN cd /var/www && \
+    git clone https://github.com/twostairs/paperwork.git && \
+    cd ./paperwork/ && \
+    git checkout 1  && \
+    cd ./frontend/ && \ 
+    composer install && \
+    npm install -g gulp && \ 
+    npm install -g bower && \
+    npm install && \
+    bower install --allow-root && \
+    gulp
 
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 COPY mariadb.sh /etc/service/mariadb/run
+COPY database.php /etc/firstrun/database.php
 RUN chmod +x /etc/my_init.d/firstrun.sh && \
     chmod +x /etc/service/mariadb/run && \
-    chown -R nobody:users /opt/observium && \
-    chmod 755 -R /opt/observium && \
+    chown -R nobody:users /var/www/paperwork && \
+    chmod 755 -R /var/www/paperwork && \
     chown -R nobody:users /config && \
     chmod 755 -R /config && \
     chown -R nobody:users /var/log/mysql* && \
     chown -R nobody:users /var/lib/mysql && \
     chown -R nobody:users /etc/mysql && \
-    chown -R nobody:users /var/run/mysqld
+    chown -R nobody:users /var/run/mysqld && \
+    rm /var/www/paperwork/frontend/app/config/database.php
 
-# Configure apache2 to serve Observium app
-COPY apache2.conf /etc/apache2/apache2.conf
-COPY ports.conf /etc/apache2/ports.conf
-COPY apache-observium /etc/apache2/sites-available/000-default.conf
-RUN rm /etc/apache2/sites-available/default-ssl.conf && \
-    echo www-data > /etc/container_environment/APACHE_RUN_USER && \
-    echo www-data > /etc/container_environment/APACHE_RUN_GROUP && \
-    echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR && \
-    echo /var/lock/apache2 > /etc/container_environment/APACHE_LOCK_DIR && \
-    echo /var/run/apache2.pid > /etc/container_environment/APACHE_PID_FILE && \
-    echo /var/run/apache2 > /etc/container_environment/APACHE_RUN_DIR && \
-    chown -R www-data:www-data /var/log/apache2 && \
-    rm -Rf /var/www && \
-    ln -s /opt/observium/html /var/www
+# Configure nginx to serve Paperwork app
+COPY nginx-paperwork /etc/nginx/sites-available/default
 
+EXPOSE 80/tcp 3306
 
-# Setup Observium cron jobs
-COPY cron-observium /etc/cron.d/observium
-
-EXPOSE 8668/tcp
-
-VOLUME ["/config","/opt/observium/logs","/opt/observium/rrd"]
+VOLUME ["/config"]
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
