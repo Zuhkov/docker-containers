@@ -2,8 +2,8 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.16
-MAINTAINER Zuhkov <zuhkov@gmail.com>
+FROM phusion/baseimage:0.11
+MAINTAINER uberchuckie <uberchuckie@gmail.com>
 
 # Set correct environment variables.
 ENV HOME /root
