@@ -38,8 +38,8 @@ RUN locale-gen ru_RU.UTF-8
 RUN locale-gen sl_SI.UTF-8
 RUN locale-gen uk_UA.UTF-8
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xcbcb082a1bb943db && \
-    echo "deb http://mariadb.mirror.iweb.com/repo/5.5/ubuntu `lsb_release -cs` main" \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xf1656f24c74cd1d8 && \
+    echo "deb http://mariadb.mirror.iweb.com/repo/10.3/ubuntu `lsb_release -cs` main" \
     > /etc/apt/sources.list.d/mariadb.list
 
 # Install Observium prereqs
