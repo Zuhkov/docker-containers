@@ -17,15 +17,16 @@ else
   /usr/bin/mysql_install_db --datadir=/config/databases >/dev/null 2>&1
   echo "Installation complete."
   start_mysql
-  echo "Creating user and database."
+  echo "Creating database."
   mysql -uroot -e "CREATE DATABASE IF NOT EXISTS observium DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
   PW=$(cat /config/config.php | grep -m 1 "'db_pass'" | sed -r 's/.*(.{34})/\1/;s/.{2}$//')
+  echo "Creating user."
   mysql -uroot -e "CREATE USER 'observium'@'localhost' IDENTIFIED BY '$PW'"
-  echo "Database created. Granting access to 'observium' user for localhost."
+  echo "Granting access to 'observium' user for localhost."
   mysql -uroot -e "GRANT ALL PRIVILEGES ON observium.* TO 'observium'@'localhost'"
   mysql -uroot -e "FLUSH PRIVILEGES"
   cd /opt/observium
-  php includes/update/update.php
+  ./discovery.php -u
   php adduser.php observium observium 10
   echo "Shutting down."
   mysqladmin -u root shutdown

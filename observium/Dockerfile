@@ -46,9 +46,9 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xf1656f24c74cd
 RUN apt-get update -q && \
     apt-get install -y --no-install-recommends mariadb-server mariadb-client \
       libapache2-mod-php7.2 php7.2-cli php7.2-mysql php7.2-mysqli php7.2-gd php7.2-json \
-      php-pear snmp fping python-mysqldb rrdtool subversion whois mtr-tiny \
-      ipmitool graphviz imagemagick apache2 \
-      wget
+      php-pear snmp fping python-mysqldb rrdtool subversion whois mtr-tiny at \
+      nmap ipmitool graphviz imagemagick apache2 \
+      wget pwgen at libvirt-bin
 
 # Tweak my.cnf
 RUN sed -i -e 's#\(bind-address.*=\).*#\1 127.0.0.1#g' /etc/mysql/my.cnf && \
@@ -101,6 +101,7 @@ RUN rm /etc/apache2/sites-available/default-ssl.conf && \
 
 # Setup Observium cron jobs
 COPY cron-observium /etc/cron.d/observium
+RUN chmod 744 /etc/cron.d/observium
 
 EXPOSE 8668/tcp
 

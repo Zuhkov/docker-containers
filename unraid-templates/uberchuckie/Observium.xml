@@ -6,7 +6,7 @@
   <Registry>https://hub.docker.com/r/uberchuckie/observium/</Registry>
   <Network>bridge</Network>
   <MyIP/>
-  <Shell>sh</Shell>
+  <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support/>
   <Project/>
