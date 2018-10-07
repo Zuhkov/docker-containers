@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>Observium</Name>
+  <Name>observium</Name>
   <GitHub>https://github.com/charlescng/docker-containers/tree/master/observium</GitHub>
   <Repository>uberchuckie/observium</Repository>
   <Registry>https://hub.docker.com/r/uberchuckie/observium/</Registry>
