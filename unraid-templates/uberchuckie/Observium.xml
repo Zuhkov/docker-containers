@@ -62,6 +62,6 @@
   <Labels/>
   <Config Name="Host Port 1" Target="8668" Default="8668" Mode="tcp" Description="Container Port: 8668" Type="Port" Display="always" Required="true" Mask="false">8668</Config>
   <Config Name="AppData Config Path" Target="/config" Default="/mnt/user/appdata/observium/config" Mode="rw" Description="Container Path: /config" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/config</Config>
-  <Config Name="Host Path 2" Target="/opt/observium/logs" Default="/mnt/user/appdata/observium/logs" Mode="rw" Description="Container Path: /opt/observium/logs" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/logs</Config>
-  <Config Name="Host Path 3" Target="/opt/observium/rrd" Default="/mnt/user/appdata/observium/rrd" Mode="rw" Description="Container Path: /opt/observium/rrd" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/rrd</Config>
+  <Config Name="Logs Path" Target="/opt/observium/logs" Default="/mnt/user/appdata/observium/logs" Mode="rw" Description="Container Path: /opt/observium/logs" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/logs</Config>
+  <Config Name="RRD Path" Target="/opt/observium/rrd" Default="/mnt/user/appdata/observium/rrd" Mode="rw" Description="Container Path: /opt/observium/rrd" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/rrd</Config>
 </Container>
