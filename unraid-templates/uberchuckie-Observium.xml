@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Observium</Name>
+  <GitHub>https://github.com/charlescng/docker-containers/tree/master/observium</GitHub>
+  <Repository>uberchuckie/observium</Repository>
+  <Registry>https://hub.docker.com/r/uberchuckie/observium/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Project/>
+  <Overview>[h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]&#xD;
+[b][span style='color: #E80000;']Directions:[/span][/b][br]&#xD;
+[b]/config[/b] : this path is where Observium will store its PHP config file and the database which contains data for users, devices, and data.[br]&#xD;
+[b]/opt/observium/logs[/b] : this path is where Observium will store its logs.[br]&#xD;
+[b]/opt/observium/rrd[/b] : this path is where Observium will store its Round-Robin Database (RRD) data.[br]&#xD;
+</Overview>
+  <Category/>
+  <WebUI>http://[IP]:[PORT:8668]/</WebUI>
+  <TemplateURL/>
+  <Icon>http://i.imgur.com/CGrAh79.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DonateText/>
+  <DonateLink/>
+  <Description>[h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]&#xD;
+[b][span style='color: #E80000;']Directions:[/span][/b][br]&#xD;
+[b]/config[/b] : this path is where Observium will store its PHP config file and the database which contains data for users, devices, and data.[br]&#xD;
+[b]/opt/observium/logs[/b] : this path is where Observium will store its logs.[br]&#xD;
+[b]/opt/observium/rrd[/b] : this path is where Observium will store its Round-Robin Database (RRD) data.[br]&#xD;
+</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>8668</HostPort>
+        <ContainerPort>8668</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/observium/config</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/observium/logs</HostDir>
+      <ContainerDir>/opt/observium/logs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/observium/rrd</HostDir>
+      <ContainerDir>/opt/observium/rrd</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Labels/>
+  <Config Name="Host Port 1" Target="8668" Default="8668" Mode="tcp" Description="Container Port: 8668" Type="Port" Display="always" Required="true" Mask="false">8668</Config>
+  <Config Name="Host Path 1" Target="/config" Default="/mnt/user/appdata/observium/config" Mode="rw" Description="Container Path: /config" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/config</Config>
+  <Config Name="Host Path 2" Target="/opt/observium/logs" Default="/mnt/user/appdata/observium/logs" Mode="rw" Description="Container Path: /opt/observium/logs" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/logs</Config>
+  <Config Name="Host Path 3" Target="/opt/observium/rrd" Default="/mnt/user/appdata/observium/rrd" Mode="rw" Description="Container Path: /opt/observium/rrd" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/observium/rrd</Config>
+</Container>
