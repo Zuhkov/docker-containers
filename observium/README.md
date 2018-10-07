@@ -10,6 +10,7 @@ Author
 ===
 
 Zuhkov <zuhkov@gmail.com>
+uberchuckie <uberchuckie@gmail.com>
 
 ---
 Building
@@ -18,15 +19,15 @@ Building
 Build from docker file:
 
 ```
-git clone git@github.com:Zuhkov/docker-containers.git
-cd paperwork
-docker build -t zuhkov/observium .
+git clone git@github.com:uberchuckie/docker-containers.git
+cd observium
+docker build -t uberchuckie/observium .
 ```
 
 You can also obtain it via:  
 
 ```
-docker pull zuhkov/observium
+docker pull uberchuckie/observium
 ```
 
 ---

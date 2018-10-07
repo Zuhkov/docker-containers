@@ -2,8 +2,8 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.16
-MAINTAINER Zuhkov <zuhkov@gmail.com>
+FROM phusion/baseimage:0.11
+MAINTAINER uberchuckie <uberchuckie@gmail.com>
 
 # Set correct environment variables.
 ENV HOME /root
@@ -38,16 +38,17 @@ RUN locale-gen ru_RU.UTF-8
 RUN locale-gen sl_SI.UTF-8
 RUN locale-gen uk_UA.UTF-8
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xcbcb082a1bb943db && \
-    echo "deb http://mariadb.mirror.iweb.com/repo/5.5/ubuntu `lsb_release -cs` main" \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xf1656f24c74cd1d8 && \
+    echo "deb http://mariadb.mirror.iweb.com/repo/10.3/ubuntu `lsb_release -cs` main" \
     > /etc/apt/sources.list.d/mariadb.list
 
 # Install Observium prereqs
 RUN apt-get update -q && \
     apt-get install -y --no-install-recommends mariadb-server mariadb-client \
-      libapache2-mod-php5 php5-cli php5-json wget unzip software-properties-common pwgen \
-      php5-mysql php5-gd php5-mcrypt python-mysqldb rrdtool subversion whois mtr-tiny at \
-      nmap ipmitool graphviz imagemagick php5-snmp php-pear snmp graphviz fping libvirt-bin
+      libapache2-mod-php7.2 php7.2-cli php7.2-mysql php7.2-mysqli php7.2-gd php7.2-json \
+      php-pear snmp fping python-mysqldb rrdtool subversion whois mtr-tiny \
+      ipmitool graphviz imagemagick apache2 \
+      wget
 
 # Tweak my.cnf
 RUN sed -i -e 's#\(bind-address.*=\).*#\1 127.0.0.1#g' /etc/mysql/my.cnf && \
@@ -62,7 +63,7 @@ RUN mkdir -p /opt/observium/firstrun /opt/observium/logs /opt/observium/rrd /con
     tar zxvf observium-community-latest.tar.gz && \
     rm observium-community-latest.tar.gz
 
-RUN php5enmod mcrypt && \
+RUN phpenmod mcrypt && \
     a2enmod rewrite
 
 RUN mkdir /etc/service/apache2
