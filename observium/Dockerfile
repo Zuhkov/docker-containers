@@ -63,6 +63,11 @@ RUN mkdir -p /opt/observium/firstrun /opt/observium/logs /opt/observium/rrd /con
     tar zxvf observium-community-latest.tar.gz && \
     rm observium-community-latest.tar.gz
 
+# Patch schema upgrade SQL
+COPY patches/update/184.sql /opt/observium/update
+RUN chown nobody:users /opt/observium/update/184.sql && \
+    chmod 755 /opt/observium/update/184.sql
+
 RUN phpenmod mcrypt && \
     a2enmod rewrite
 
