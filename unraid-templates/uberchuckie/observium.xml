@@ -8,23 +8,23 @@
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support/>
+  <Support>https://forums.unraid.net/topic/75153-support-uberchuckie-observium/</Support>
   <Project/>
-  <Overview>[h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]&#xD;
+  <Overview>Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]&#xD;
 [b][span style='color: #E80000;']Directions:[/span][/b][br]&#xD;
 [b]/config[/b] : this path is where Observium will store its PHP config file and the database which contains data for users, devices, and data.[br]&#xD;
 [b]/opt/observium/logs[/b] : this path is where Observium will store its logs.[br]&#xD;
 [b]/opt/observium/rrd[/b] : this path is where Observium will store its Round-Robin Database (RRD) data.[br]&#xD;
 </Overview>
-  <Category/>
+  <Category>Network:Management</Category>
   <WebUI>http://[IP]:[PORT:8668]/</WebUI>
   <TemplateURL/>
   <Icon>http://i.imgur.com/CGrAh79.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
-  <DonateText/>
-  <DonateLink/>
+  <DonateText>If you like using this image and would like to make a donation, please send your donation to my neighbourhood food centre.</DonateText>
+  <DonateLink>https://parkdalefood.reversefoodtruck.ca/</DonateLink>
   <Description>[h3]Observium[/h3]Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems.[br][br]&#xD;
 [b][span style='color: #E80000;']Directions:[/span][/b][br]&#xD;
 [b]/config[/b] : this path is where Observium will store its PHP config file and the database which contains data for users, devices, and data.[br]&#xD;
