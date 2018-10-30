@@ -20,13 +20,15 @@ else
   echo "Creating database."
   mysql -uroot -e "CREATE DATABASE IF NOT EXISTS observium DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
   PW=$(cat /config/config.php | grep -m 1 "'db_pass'" | sed -r 's/.*(.{34})/\1/;s/.{2}$//')
-  echo "Creating user."
+  echo "Creating database user."
   mysql -uroot -e "CREATE USER 'observium'@'localhost' IDENTIFIED BY '$PW'"
-  echo "Granting access to 'observium' user for localhost."
+  echo "Granting database access to 'observium' user for localhost."
   mysql -uroot -e "GRANT ALL PRIVILEGES ON observium.* TO 'observium'@'localhost'"
   mysql -uroot -e "FLUSH PRIVILEGES"
   cd /opt/observium
-  ./discovery.php -u
+  echo "Running Observium's discovery script."
+  ./discovery.php -d -u
+  echo "Adding the 'observium' user to the app."
   php adduser.php observium observium 10
   echo "Shutting down."
   mysqladmin -u root shutdown
