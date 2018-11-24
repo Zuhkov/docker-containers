@@ -48,7 +48,8 @@ RUN apt-get update -q && \
       libapache2-mod-php7.2 php7.2-cli php7.2-mysql php7.2-mysqli php7.2-gd php7.2-json \
       php-pear snmp fping python-mysqldb rrdtool subversion whois mtr-tiny at \
       nmap ipmitool graphviz imagemagick apache2 \
-      wget pwgen at libvirt-bin
+      wget pwgen at libvirt-bin && \
+    apt-get update -q -y
 
 # Tweak my.cnf
 RUN sed -i -e 's#\(bind-address.*=\).*#\1 127.0.0.1#g' /etc/mysql/my.cnf && \
