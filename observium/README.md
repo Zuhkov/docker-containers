@@ -19,7 +19,7 @@ Build from docker file:
 
 ```
 git clone git@github.com:Zuhkov/docker-containers.git
-cd paperwork
+cd observium
 docker build -t zuhkov/observium .
 ```
 
