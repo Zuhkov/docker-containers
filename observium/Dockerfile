@@ -39,7 +39,7 @@ RUN locale-gen sl_SI.UTF-8
 RUN locale-gen uk_UA.UTF-8
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xf1656f24c74cd1d8 && \
-    echo "deb http://mariadb.mirror.iweb.com/repo/10.3/ubuntu `lsb_release -cs` main" \
+    echo "deb http://mariadb.mirror.iweb.com/repo/10.4/ubuntu `lsb_release -cs` main" \
     > /etc/apt/sources.list.d/mariadb.list
 
 # Install Observium prereqs
@@ -86,8 +86,7 @@ RUN chmod +x /etc/my_init.d/firstrun.sh && \
     chmod 755 -R /config && \
     chown -R nobody:users /var/log/mysql* && \
     chown -R nobody:users /var/lib/mysql && \
-    chown -R nobody:users /etc/mysql && \
-    chown -R nobody:users /var/run/mysqld
+    chown -R nobody:users /etc/mysql
 
 # Configure apache2 to serve Observium app
 COPY apache2.conf /etc/apache2/apache2.conf
