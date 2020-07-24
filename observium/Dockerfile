@@ -2,7 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.11
+FROM phusion/baseimage:bionic-1.0.0
 MAINTAINER uberchuckie <uberchuckie@gmail.com>
 
 # Set correct environment variables.
@@ -39,7 +39,7 @@ RUN locale-gen sl_SI.UTF-8
 RUN locale-gen uk_UA.UTF-8
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xf1656f24c74cd1d8 && \
-    echo "deb http://mariadb.mirror.iweb.com/repo/10.4/ubuntu `lsb_release -cs` main" \
+    echo "deb http://mariadb.mirror.iweb.com/repo/10.5/ubuntu `lsb_release -cs` main" \
     > /etc/apt/sources.list.d/mariadb.list
 
 # Install Observium prereqs
