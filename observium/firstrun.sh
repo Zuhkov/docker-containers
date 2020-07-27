@@ -6,6 +6,7 @@ atd
 if [ -f /config/config.php ]; then
   echo "Using existing PHP database config file."
   echo "/opt/observium/discovery.php -u" | at -M now + 1 minute
+  echo "/usr/bin/mysql_upgrade -uroot" | at -M now + 1 minute
 else
   echo "Loading PHP config from default."
   mkdir -p /config/databases
