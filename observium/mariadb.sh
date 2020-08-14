@@ -33,12 +33,13 @@ else
   echo "Shutting down."
   mysqladmin -u root shutdown
   sleep 1
-  echo "chown time"
-  chown -R nobody:users /config/databases
-  chmod -R 755 /config/databases
-  sleep 3
   echo "Initialization complete."
 fi
+
+echo "Fixing file permissions."
+chown -R nobody:users /config/databases
+chmod -R 755 /config/databases
+sleep 3
 
 echo "Starting MariaDB..."
 /usr/bin/mysqld_safe --skip-syslog --datadir='/config/databases'
